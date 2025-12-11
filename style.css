@@ -1,0 +1,131 @@
+/* style.css — sticky footer + neutral palette */
+:root{
+  --accent: #2F80ED;
+  --accent-2: #0EA5A4;
+  --muted: #6b7280;
+  --kanji-color: #2f2b57;
+  --surface: #ffffff;
+  --card-shadow: rgba(47,43,87,0.06);
+}
+
+/* Layout: make page full-height and push footer to bottom */
+html, body {
+  height: 100%;
+}
+body{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;    /* ensure viewport full height */
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  margin: 0;
+  background: var(--surface);
+  color: #0b1220;
+}
+
+/* main area should expand to push footer down */
+main.container {
+  flex: 1 0 auto;
+  padding-bottom: 24px;
+}
+
+/* Navbar */
+#main-nav{
+  background: var(--surface);
+  border-bottom: 1px solid rgba(15,23,42,0.04);
+  padding-top:10px;
+  padding-bottom:10px;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.03);
+}
+.logo-pill{
+  width:48px; height:48px; border-radius:10px;
+  display:flex; align-items:center; justify-content:center; color:#fff;
+  font-weight:800; font-size:18px;
+  background: linear-gradient(180deg,var(--accent),var(--accent-2));
+}
+
+/* Info card (left) */
+.sticky-card{ position: sticky; top:18px; }
+.card { background: #fff; }
+
+/* quiz area */
+.card-kanji{
+  border-radius:12px;
+  overflow:hidden;
+  border:none;
+  background: #fff;
+  box-shadow: 0 12px 40px var(--card-shadow);
+}
+.kanji-big{
+  font-size:84px;
+  text-align:center;
+  padding:28px 8px;
+  font-weight:800;
+  color: var(--kanji-color);
+}
+@media (max-width:576px){ .kanji-big{ font-size:48px; } }
+
+/* choices */
+.choice-card{
+  border-radius:10px;
+  padding:12px 14px;
+  background: linear-gradient(180deg,#fff,#fbfdff);
+  border:1px solid rgba(15,23,42,0.04);
+  transition: transform .14s ease, box-shadow .14s ease;
+  cursor:pointer;
+  display:flex; align-items:center; min-height:64px;
+}
+.choice-card:hover{ transform: translateY(-6px); box-shadow: 0 18px 28px rgba(15,23,42,0.06); }
+.choice-selected{
+  background: linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:#fff;
+  box-shadow: 0 18px 40px rgba(47,43,87,0.12);
+  transform:none;
+}
+
+/* list-group (JLPT) */
+.list-group-item.active,
+.list-group-item.active:focus,
+.list-group-item.active:hover{
+  background: linear-gradient(90deg,var(--accent),var(--accent-2));
+  border-color: transparent;
+  color: #fff;
+}
+
+/* progress */
+.progress{ height:10px; background: rgba(15,23,42,0.03); border-radius:8px; overflow:hidden; }
+.progress-bar{ background: linear-gradient(90deg,var(--accent),var(--accent-2)); }
+
+/* buttons */
+.btn-primary{
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.btn-primary:hover{ background: var(--accent-2); border-color: var(--accent-2); }
+
+/* small text */
+.small-muted{ color: var(--muted); }
+
+/* confetti container */
+#confetti-wrapper{ position: fixed; left:0; right:0; top:0; bottom:0; pointer-events:none; z-index:2000; overflow:hidden; }
+
+/* modal tweaks */
+.modal-content{ border-radius:12px; }
+
+/* accessibility focus */
+.choice-card:focus{ outline: 3px solid rgba(14,165,164,0.12); outline-offset:4px; }
+
+/* footer: sticky to bottom while not overlapping content */
+.page-footer{
+  background: var(--surface);
+  border-top: 1px solid rgba(15,23,42,0.04);
+  padding: 14px 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  flex-shrink: 0; /* prevent footer from shrinking in flex layout */
+}
+
+/* small responsive tweaks */
+@media (min-width:992px){
+  #main-nav .container { display:flex; align-items:center; gap:10px; }
+}
