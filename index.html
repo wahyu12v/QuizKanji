@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Quiz Kanji — Fun</title>
+  <title>Quiz Kanji — Hafalan & Pilihan</title>
 
   <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -22,9 +22,10 @@
         </div>
       </a>
 
-      <div class="ms-auto d-flex align-items-center gap-3">
+      <div class="ms-auto d-flex align-items-center gap-2">
         <div id="exam-timer" class="small text-muted d-none"></div>
-        <div class="text-muted small d-none d-md-block">Ardian Wahyu Saputra</div>
+        <button id="memorizeBtn" class="btn btn-outline-info">Tes Hafalan</button>
+        <div class="vr d-none d-md-block"></div>
         <button id="startBtn" class="btn btn-primary">Mulai Quiz</button>
       </div>
     </div>
@@ -116,6 +117,42 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
           <button id="modalStart" type="submit" class="btn btn-primary">Mulai</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- modal: tes hafalan (sequential/random) -->
+  <div class="modal fade" id="memModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <form id="memForm" class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Tes Hafalan Kanji (Tulis Romaji)</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="memType" id="memSeq" value="seq" checked>
+              <label class="form-check-label" for="memSeq">Sequential (per 20 kanji)</label>
+            </div>
+            <div id="memSeqWrap" class="mt-2 ps-3">
+              <select id="memSeqSelect" class="form-select"></select>
+            </div>
+          </div>
+
+          <div class="mb-2">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="memType" id="memRand" value="rand">
+              <label class="form-check-label" for="memRand">Random 20 kanji</label>
+            </div>
+          </div>
+
+          <div class="small text-muted">Petunjuk: ketik <strong>romaji</strong> (contoh: taberu, gakkou). Sistem menerima variasi romaji & typo ringan.</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+          <button id="memStart" type="submit" class="btn btn-success">Mulai Tes Hafalan</button>
         </div>
       </form>
     </div>
