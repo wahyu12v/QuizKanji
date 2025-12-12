@@ -1,4 +1,4 @@
-/* style.css — sticky footer + neutral palette */
+/* style.css — neutral palette + sticky footer + exam timer */
 :root{
   --accent: #2F80ED;
   --accent-2: #0EA5A4;
@@ -8,25 +8,20 @@
   --card-shadow: rgba(47,43,87,0.06);
 }
 
-/* Layout: make page full-height and push footer to bottom */
-html, body {
-  height: 100%;
-}
+/* Layout: ensure footer stays bottom */
+html, body { height: 100%; }
 body{
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;    /* ensure viewport full height */
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  margin: 0;
+  margin:0;
   background: var(--surface);
-  color: #0b1220;
+  color:#0b1220;
 }
 
-/* main area should expand to push footer down */
-main.container {
-  flex: 1 0 auto;
-  padding-bottom: 24px;
-}
+/* main area expands */
+main.container { flex: 1 0 auto; padding-bottom: 24px; }
 
 /* Navbar */
 #main-nav{
@@ -43,16 +38,25 @@ main.container {
   background: linear-gradient(180deg,var(--accent),var(--accent-2));
 }
 
-/* Info card (left) */
-.sticky-card{ position: sticky; top:18px; }
-.card { background: #fff; }
+/* exam timer in navbar */
+#exam-timer{
+  background: linear-gradient(90deg,var(--accent),var(--accent-2));
+  color: #fff;
+  padding:6px 10px;
+  border-radius:8px;
+  font-weight:600;
+}
+
+/* info card */
+.sticky-card{ position:sticky; top:18px; }
+.card { background:#fff; }
 
 /* quiz area */
 .card-kanji{
   border-radius:12px;
   overflow:hidden;
   border:none;
-  background: #fff;
+  background:#fff;
   box-shadow: 0 12px 40px var(--card-shadow);
 }
 .kanji-big{
@@ -82,7 +86,7 @@ main.container {
   transform:none;
 }
 
-/* list-group (JLPT) */
+/* list-group active */
 .list-group-item.active,
 .list-group-item.active:focus,
 .list-group-item.active:hover{
@@ -96,10 +100,7 @@ main.container {
 .progress-bar{ background: linear-gradient(90deg,var(--accent),var(--accent-2)); }
 
 /* buttons */
-.btn-primary{
-  background: var(--accent);
-  border-color: var(--accent);
-}
+.btn-primary{ background: var(--accent); border-color: var(--accent); }
 .btn-primary:hover{ background: var(--accent-2); border-color: var(--accent-2); }
 
 /* small text */
@@ -114,7 +115,10 @@ main.container {
 /* accessibility focus */
 .choice-card:focus{ outline: 3px solid rgba(14,165,164,0.12); outline-offset:4px; }
 
-/* footer: sticky to bottom while not overlapping content */
+/* JLPT underline emphasis (slightly thicker) */
+.jlpt-underline { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; }
+
+/* footer */
 .page-footer{
   background: var(--surface);
   border-top: 1px solid rgba(15,23,42,0.04);
@@ -122,10 +126,8 @@ main.container {
   text-align: center;
   color: var(--muted);
   font-size: 14px;
-  flex-shrink: 0; /* prevent footer from shrinking in flex layout */
+  flex-shrink: 0;
 }
 
-/* small responsive tweaks */
-@media (min-width:992px){
-  #main-nav .container { display:flex; align-items:center; gap:10px; }
-}
+/* responsive tweaks */
+@media (min-width:992px){ #main-nav .container { display:flex; align-items:center; gap:10px; } }
