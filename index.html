@@ -23,6 +23,7 @@
       </a>
 
       <div class="ms-auto d-flex align-items-center gap-3">
+        <div class="text-muted small d-none d-md-block">Ardian Wahyu Saputra</div>
         <button id="startBtn" class="btn btn-primary">Mulai Quiz</button>
       </div>
     </div>
@@ -30,7 +31,7 @@
 
   <main class="container my-4">
     <div class="row g-3">
-      <!-- left panel (summary + hidden batch list) -->
+      <!-- left panel (summary) -->
       <aside class="col-lg-4">
         <div class="card mb-3 sticky-card">
           <div class="card-body">
@@ -68,7 +69,7 @@
     </div>
   </main>
 
-  <!-- modal: pilih jenis quiz (ditambahkan opsi JLPT + dropdown JLPT) -->
+  <!-- modal: pilih jenis quiz (Custom range sudah dihapus) -->
   <div class="modal fade" id="quizModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <form id="quizForm" class="modal-content">
@@ -96,26 +97,12 @@
             </div>
           </div>
 
-          <!-- Custom -->
-          <div class="mb-3">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="type" id="typeCustom" value="custom">
-              <label class="form-check-label" for="typeCustom">Custom range (masukkan nomor awal)</label>
-            </div>
-            <div id="customWrap" class="mt-2 ps-3 d-none">
-              <label class="form-label small">Nomor awal (1 hingga total)</label>
-              <input id="customStart" type="number" min="1" class="form-control" placeholder="Contoh: 41 untuk 41–60">
-            </div>
-          </div>
-
           <!-- JLPT option -->
           <div class="mb-3">
             <div class="form-check">
               <input class="form-check-input" type="radio" name="type" id="typeJLPT" value="jlpt">
               <label class="form-check-label" for="typeJLPT">Tes Kanji — JLPT Version (format soal JLPT)</label>
             </div>
-
-            <!-- NEW: jlptSelectWrap visible only when JLPT selected -->
             <div id="jlptSelectWrap" class="mt-2 ps-3 d-none">
               <label class="form-label small">Pilih nomor tes JLPT</label>
               <select id="jlptSelect" class="form-select"></select>
