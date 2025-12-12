@@ -1,16 +1,14 @@
-/* style.css — final palette & responsive layout */
-/* Palette requested: D1F8EF and E3FEF7, white background */
 :root{
   --accent: #D1F8EF;
   --accent-2: #E3FEF7;
-  --accent-dark: #0ea5a4; /* fallback darker accent for contrast */
+  --accent-dark: #0ea5a4;
   --muted: #6b7280;
   --kanji-color: #2f2b57;
   --surface: #ffffff;
   --card-shadow: rgba(47,43,87,0.06);
 }
 
-/* Layout: ensure footer stays bottom */
+/* Layout */
 html, body { height: 100%; }
 body{
   display:flex;
@@ -21,8 +19,6 @@ body{
   background: var(--surface);
   color:#0b1220;
 }
-
-/* main area expands */
 main.container { flex: 1 0 auto; padding-bottom: 24px; }
 
 /* Navbar */
@@ -40,16 +36,7 @@ main.container { flex: 1 0 auto; padding-bottom: 24px; }
   background: linear-gradient(180deg,var(--accent-dark),#0b9b96);
 }
 
-/* exam timer in navbar */
-#exam-timer{
-  background: linear-gradient(90deg,var(--accent),var(--accent-2));
-  color: #0b1220;
-  padding:6px 10px;
-  border-radius:8px;
-  font-weight:600;
-}
-
-/* info card */
+/* info card & progress */
 .sticky-card{ position:sticky; top:18px; }
 .card { background:#fff; }
 
@@ -88,15 +75,6 @@ main.container { flex: 1 0 auto; padding-bottom: 24px; }
   transform:none;
 }
 
-/* list-group active */
-.list-group-item.active,
-.list-group-item.active:focus,
-.list-group-item.active:hover{
-  background: linear-gradient(90deg,var(--accent),var(--accent-2));
-  border-color: transparent;
-  color: #0b1220;
-}
-
 /* progress */
 .progress{ height:10px; background: rgba(15,23,42,0.03); border-radius:8px; overflow:hidden; }
 .progress-bar{ background: linear-gradient(90deg,var(--accent),var(--accent-2)); }
@@ -115,16 +93,6 @@ main.container { flex: 1 0 auto; padding-bottom: 24px; }
 /* modal tweaks */
 .modal-content{ border-radius:12px; }
 
-/* accessibility focus */
-.choice-card:focus{ outline: 3px solid rgba(14,165,164,0.12); outline-offset:4px; }
-
-/* JLPT underline emphasis (slightly thicker) */
-.jlpt-underline { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; }
-
-/* audio player small style inside question */
-.q-audio { display:flex; justify-content:center; margin-top:8px; }
-.q-audio audio { outline:none; }
-
 /* footer */
 .page-footer{
   background: var(--surface);
@@ -135,6 +103,12 @@ main.container { flex: 1 0 auto; padding-bottom: 24px; }
   font-size: 14px;
   flex-shrink: 0;
 }
+
+/* layout for navigation buttons row */
+.btn-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+
+/* "Lupa" button style */
+.btn-lupa { background:#f3f4f6; border:1px solid rgba(15,23,42,0.06); color:#374151; }
 
 /* responsive tweaks */
 @media (min-width:992px){ #main-nav .container { display:flex; align-items:center; gap:10px; } }
