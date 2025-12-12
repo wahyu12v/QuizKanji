@@ -23,6 +23,8 @@
       </a>
 
       <div class="ms-auto d-flex align-items-center gap-3">
+        <div id="exam-timer" class="small text-muted d-none"></div>
+        <div class="text-muted small d-none d-md-block">Ardian Wahyu Saputra</div>
         <button id="startBtn" class="btn btn-primary">Mulai Quiz</button>
       </div>
     </div>
@@ -30,7 +32,7 @@
 
   <main class="container my-4">
     <div class="row g-3">
-      <!-- left panel (summary) -->
+      <!-- left panel (summary + history) -->
       <aside class="col-lg-4">
         <div class="card mb-3 sticky-card">
           <div class="card-body">
@@ -68,7 +70,7 @@
     </div>
   </main>
 
-  <!-- modal: pilih jenis quiz (Custom range sudah dihapus) -->
+  <!-- modal: pilih jenis quiz -->
   <div class="modal fade" id="quizModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <form id="quizForm" class="modal-content">
