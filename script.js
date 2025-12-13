@@ -406,7 +406,6 @@ function renderMemQuestion(withAnim=false){
   const inputWrap = document.createElement('div'); inputWrap.className='mt-3';
   const label = document.createElement('label'); label.className = 'form-label small text-muted'; label.innerText = 'Jawaban (romaji)';
   const input = document.createElement('input'); input.className = 'form-control form-control-lg';
-  input.placeholder = 'Contoh: taberu, gakkou, denwa';
   input.value = existing;
   input.autocomplete = 'off';
   input.addEventListener('input', (e)=>{
