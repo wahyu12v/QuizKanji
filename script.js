@@ -772,21 +772,36 @@ function hiraToRomaji(hira) {
   return out;
 }
 
+
+
 /* normalize romaji (lowercase, ou->oo normalize, simple mappings) */
 function normalizeRomaji(s){
   if(!s) return '';
   let str = String(s).toLowerCase();
+
+  // buang karakter aneh
   str = str.replace(/[^a-zō]/g,'');
-  str = str.replace(/ō/g,'oo');
-  str = str.replace(/ou/g,'oo');
-  str = str.replace(/shi/g,'si');
-  str = str.replace(/chi/g,'ti');
-  str = str.replace(/tsu/g,'tu');
-  str = str.replace(/fu/g,'hu');
-  str = str.replace(/ji/g,'zi');
-  str = str.replace(/(.)\1+/g,'$1');
+
+  // panjang vokal
+  str = str.replace(/ō/g,'ou');
+
+
+  str = str.replace(/si/g,'shi');
+  str = str.replace(/ti/g,'chi');
+  str = str.replace(/tu/g,'tsu');
+  str = str.replace(/hu/g,'fu');
+  str = str.replace(/zi/g,'ji');
+
+  // variasi umum
+  str = str.replace(/ou/g,'ou'); // biarkan, jangan paksa oo
+  str = str.replace(/nn/g,'n');
+
+  // hilangkan pengulangan berlebihan (typo ringan)
+  str = str.replace(/(.)\1{2,}/g,'$1');
+
   return str;
 }
+
 
 /* ------------------ Misc UI & confetti ------------------ */
 function launchConfetti(n=50){
