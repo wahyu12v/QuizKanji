@@ -1,10 +1,3 @@
-/* script.js — FULL integrated final
-   - JLPT behaves like Random (checkbox ranges)
-   - Contoh kombinasi dihapus
-   - Contoh kalimat tetap dengan terjemahan
-   - Enter pada input hafalan -> next / confirm
-   - All previous features preserved
-*/
 
 const BATCH_SIZE = 20;
 let QUESTIONS = [];
