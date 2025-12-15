@@ -1,63 +1,87 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Quiz Kanji — Final</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Quiz Kanji — Final</title>
 
-  <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="asset/logo2-removebg.png" />
 
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar sticky-top navbar-light shadow-sm py-1" id="main-nav">
+      <div class="container d-flex align-items-center">
+        <!-- BRAND -->
+        <a class="navbar-brand d-flex align-items-center gap-2 mb-0" href="#">
+          <!-- LOGO -->
+          <img
+            src="/asset/logo2-removebg.png"
+            alt="Hafalan Kanji Logo"
+            style="height: 36px; width: auto"
+          />
 
-<!-- NAVBAR -->
-<nav class="navbar sticky-top navbar-light shadow-sm" id="main-nav">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center gap-3" href="#">
-      <div class="logo-pill">文</div>
-      <div>
-        <div class="h5 mb-0">Quiz Kanji</div>
-        <small class="text-muted" id="title">Hafalan list 703 Kanji Jft/JLPT</small>
-      </div>
-    </a>
+          <!-- TEXT -->
+          <div class="d-flex flex-column">
+            <div class="fw-semibold" style="font-size: 16px; line-height: 1">
+              Hafalan Kanji
+            </div>
+            <small class="text-muted" style="font-size: 11px; line-height: 1">
+              by Ardian Wahyu Saputra
+            </small>
+          </div>
+        </a>
 
-    <div class="ms-auto d-flex align-items-center gap-3">
+        <!-- MENU -->
+        <div class="ms-auto d-flex align-items-center gap-2">
+          <!-- PROGRESS MINI -->
+          <div style="width: 70px">
+            <div class="progress" style="height: 4px">
+              <div
+                id="overall-progress"
+                class="progress-bar"
+                style="width: 0%"
+              ></div>
+            </div>
+          </div>
 
-      <!-- PROGRESS KECIL DI NAVBAR -->
-      <div style="min-width:130px;">
-        <div style="font-size:11px;color:#6c757d;line-height:1;">Progress</div>
-        <div class="progress" style="height:6px;">
-          <div id="overall-progress" class="progress-bar" style="width:0%"></div>
+          <!-- BUTTONS MINI -->
+
+          <button
+            id="daftarHafalanBtn"
+            class="btn btn-outline-info btn-sm px-2"
+          >
+            Kanji
+          </button>
+          <button id="memorizeBtn" class="btn btn-outline-info btn-sm px-2">
+            Hafalan
+          </button>
+
+          <button id="startBtn" class="btn btn-outline-info btn-sm px-2">
+            Quiz
+          </button>
         </div>
       </div>
+    </nav>
 
-      <div id="exam-timer" class="small text-muted d-none"></div>
+    <!-- MAIN -->
+    <main class="container my-4">
+      <div class="row g-3">
+        <div id="quiz-area"></div>
+      </div>
+    </main>
 
-      <button id="memorizeBtn" class="btn btn-outline-info">
-        Tes Hafalan
-      </button>
-      <button id="startBtn" class="btn btn-outline-info">
-        Mulai Quiz
-      </button>
-    </div>
-  </div>
-</nav>
-
-<!-- MAIN -->
-<main class="container my-4">
-  <div class="row g-3">
-
-      <div id="quiz-area"></div>
-  </div>
-</main>
-
-
-
-
-    <aside class="col-lg-4"  style="display:none;">
+    <aside class="col-lg-4" style="display: none">
       <div class="card mb-3 sticky-card">
         <div class="card-body">
           <h5 class="card-title mb-1">Info</h5>
@@ -79,7 +103,11 @@
             <button id="clearProgress" class="btn btn-outline-danger btn-sm">
               <i class="bi bi-trash"></i> Hapus Progress
             </button>
-            <div id="clearMsg" class="small text-muted mt-1" style="display:none;">
+            <div
+              id="clearMsg"
+              class="small text-muted mt-1"
+              style="display: none"
+            >
               Progress berhasil dihapus.
             </div>
           </div>
@@ -92,130 +120,229 @@
       </div>
     </aside>
 
-
-
-<!-- MODAL: PILIH QUIZ -->
-<div class="modal fade" id="quizModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <form id="quizForm" class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Pilih Jenis Quiz</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-
-        <div class="mb-3">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="type" id="typeSeq" value="seq" checked>
-            <label class="form-check-label" for="typeSeq">Sequential (per 20)</label>
+    <!-- MODAL: PILIH QUIZ -->
+    <div class="modal fade" id="quizModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <form id="quizForm" class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Pilih Jenis Quiz</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="type" id="typeRand" value="rand">
-            <label class="form-check-label" for="typeRand">Random</label>
+          <div class="modal-body">
+            <div class="mb-3">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="type"
+                  id="typeSeq"
+                  value="seq"
+                  checked
+                />
+                <label class="form-check-label" for="typeSeq"
+                  >Sequential (per 20)</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="type"
+                  id="typeRand"
+                  value="rand"
+                />
+                <label class="form-check-label" for="typeRand">Random</label>
+              </div>
+            </div>
+
+            <div id="seqSelectWrap" class="mb-3 ps-3">
+              <label class="small text-muted">Pilih paket sequential:</label>
+              <select id="seqSelect" class="form-select"></select>
+            </div>
+
+            <div id="rangeWrapQuiz" class="mb-3 d-none">
+              <label class="small text-muted">Pilih range (opsional):</label>
+              <div id="rangeListQuiz" class="d-flex flex-wrap gap-2 mt-2"></div>
+              <div class="mt-2">
+                <button
+                  id="selectAllRangeQuiz"
+                  type="button"
+                  class="btn btn-sm btn-outline-secondary"
+                >
+                  Pilih Semua
+                </button>
+                <button
+                  id="clearAllRangeQuiz"
+                  type="button"
+                  class="btn btn-sm btn-outline-secondary"
+                >
+                  Bersihkan
+                </button>
+              </div>
+              <div class="small text-muted mt-1">
+                Jika tidak dicentang, pool = seluruh database.
+              </div>
+            </div>
+
+            <div class="small text-muted">
+              Setelah klik "Mulai", quiz akan dimulai.
+            </div>
           </div>
-        </div>
-
-        <div id="seqSelectWrap" class="mb-3 ps-3">
-          <label class="small text-muted">Pilih paket sequential:</label>
-          <select id="seqSelect" class="form-select"></select>
-        </div>
-
-        <div id="rangeWrapQuiz" class="mb-3 d-none">
-          <label class="small text-muted">Pilih range (opsional):</label>
-          <div id="rangeListQuiz" class="d-flex flex-wrap gap-2 mt-2"></div>
-          <div class="mt-2">
-            <button id="selectAllRangeQuiz" type="button" class="btn btn-sm btn-outline-secondary">Pilih Semua</button>
-            <button id="clearAllRangeQuiz" type="button" class="btn btn-sm btn-outline-secondary">Bersihkan</button>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Batal
+            </button>
+            <button id="modalStart" type="submit" class="btn btn-primary">
+              Mulai
+            </button>
           </div>
-          <div class="small text-muted mt-1">Jika tidak dicentang, pool = seluruh database.</div>
-        </div>
-
-        <div class="small text-muted">Setelah klik "Mulai", quiz akan dimulai.</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-        <button id="modalStart" type="submit" class="btn btn-primary">Mulai</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<!-- MODAL: TES HAFALAN -->
-<div class="modal fade" id="memModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <form id="memForm" class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Tes Hafalan Kanji (Tulis Romaji)</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-
-        <div class="mb-2">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="memType" id="memSeq" value="seq" checked>
-            <label class="form-check-label" for="memSeq">Sequential (per 20)</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="memType" id="memRand" value="rand">
-            <label class="form-check-label" for="memRand">Random</label>
-          </div>
-        </div>
-
-        <div id="memSeqWrap" class="mb-3 ps-3">
-          <label class="small text-muted">Pilih paket sequential:</label>
-          <select id="memSeqSelect" class="form-select"></select>
-        </div>
-
-        <div id="rangeWrapMem" class="mb-3 d-none">
-          <label class="small text-muted">Pilih range (opsional):</label>
-          <div id="rangeListMem" class="d-flex flex-wrap gap-2 mt-2"></div>
-          <div class="mt-2">
-            <button id="selectAllRangeMem" type="button" class="btn btn-sm btn-outline-secondary">Pilih Semua</button>
-            <button id="clearAllRangeMem" type="button" class="btn btn-sm btn-outline-secondary">Bersihkan</button>
-          </div>
-          <div class="small text-muted mt-1">Jika tidak dicentang, pool = seluruh database.</div>
-        </div>
-
-        <div class="small text-muted">
-          Petunjuk: ketik <strong>romaji</strong>. Typo dianggap salah.
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-        <button id="memStart" type="submit" class="btn btn-info">Mulai Tes Hafalan</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<!-- MODAL: CONFIRM -->
-<div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Konfirmasi Kirim Jawaban</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <div id="confirmSummary" class="small text-muted">Memeriksa jawaban…</div>
-      </div>
-      <div class="modal-footer">
-        <button id="confirmCancel" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-        <button id="confirmSend" type="button" class="btn btn-danger">Kirim Sekarang</button>
+        </form>
       </div>
     </div>
-  </div>
-</div>
 
-<div id="confetti-wrapper" aria-hidden="true"></div>
+    <!-- MODAL: TES HAFALAN -->
+    <div class="modal fade" id="memModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <form id="memForm" class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Tes Hafalan Kanji (Tulis Romaji)</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-2">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="memType"
+                  id="memSeq"
+                  value="seq"
+                  checked
+                />
+                <label class="form-check-label" for="memSeq"
+                  >Sequential (per 20)</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="memType"
+                  id="memRand"
+                  value="rand"
+                />
+                <label class="form-check-label" for="memRand">Random</label>
+              </div>
+            </div>
 
-<footer class="page-footer">
-  Dibuat oleh Ardian Wahyu Saputra
-</footer>
+            <div id="memSeqWrap" class="mb-3 ps-3">
+              <label class="small text-muted">Pilih paket sequential:</label>
+              <select id="memSeqSelect" class="form-select"></select>
+            </div>
 
-<!-- Bootstrap & Script -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
+            <div id="rangeWrapMem" class="mb-3 d-none">
+              <label class="small text-muted">Pilih range (opsional):</label>
+              <div id="rangeListMem" class="d-flex flex-wrap gap-2 mt-2"></div>
+              <div class="mt-2">
+                <button
+                  id="selectAllRangeMem"
+                  type="button"
+                  class="btn btn-sm btn-outline-secondary"
+                >
+                  Pilih Semua
+                </button>
+                <button
+                  id="clearAllRangeMem"
+                  type="button"
+                  class="btn btn-sm btn-outline-secondary"
+                >
+                  Bersihkan
+                </button>
+              </div>
+              <div class="small text-muted mt-1">
+                Jika tidak dicentang, pool = seluruh database.
+              </div>
+            </div>
 
-</body>
+            <div class="small text-muted">
+              Petunjuk: ketik <strong>romaji</strong>. Typo dianggap salah.
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Batal
+            </button>
+            <button id="memStart" type="submit" class="btn btn-info">
+              Mulai Tes Hafalan
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL: CONFIRM -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Konfirmasi Kirim Jawaban</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div id="confirmSummary" class="small text-muted">
+              Memeriksa jawaban…
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              id="confirmCancel"
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Batal
+            </button>
+            <button id="confirmSend" type="button" class="btn btn-danger">
+              Kirim Sekarang
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="confetti-wrapper" aria-hidden="true"></div>
+
+    <footer
+      class="page-footer"
+      style="background: #f8f9fa; color: #6c757d; border-top: 1px solid #e9ecef"
+    >
+      Dibuat oleh Ardian Wahyu Saputra
+    </footer>
+
+    <!-- Bootstrap & Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script src="hafalan.js"></script>
+    <script src="landing.js"></script>
+  </body>
 </html>
